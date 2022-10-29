@@ -173,6 +173,9 @@ $mobile: 900px;
 }
 
 @media only screen and (max-width: $mobile) {
+    .dp__menu_content_wrapper {
+        grid-template-columns: 1fr;
+    }
     .dp__flex_display {
         flex-direction: column;
     }
