@@ -173,6 +173,11 @@ $mobile: 900px;
 }
 
 @media only screen and (max-width: $mobile) {
+    .dp__menu {
+        right: 0 !important;
+        left: unset !important;
+    }
+
     .dp__menu_content_wrapper {
         grid-template-columns: 1fr;
     }
