@@ -4,7 +4,7 @@
         <img src="@/assets/images/calendar.png" alt="advotics">
             <span>Periode</span>
         </div>
-        <Datepicker class="datepicker" @update:modelValue="handleDate" :maxDate="maxDate" v-model="date" :previewFormat="'dd MMMM yyyy'" :format="'dd MMMM yyyy'" :clearable="false" selectText="Apply" range multiCalendars :presetRanges="presetRanges" :enableTimePicker="false" />
+        <Datepicker class="datepicker" hideInputIcon @update:modelValue="handleDate" :maxDate="maxDate" v-model="date" :previewFormat="'dd MMMM yyyy'" :format="'dd MMMM yyyy'" :clearable="false" selectText="Apply" range multiCalendars :presetRanges="presetRanges" :enableTimePicker="false" />
         <img src="@/assets/images/ic-chevron-down-alt.svg" class="chevron-down" alt="advotics">
     </div>
 </template>
