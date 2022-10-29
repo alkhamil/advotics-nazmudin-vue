@@ -143,12 +143,14 @@ export default {
                 labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                 datasets: [
                     {
+                        label: 'Line',
                         type: 'line',
                         data: [25, 20, 21, 14, 25, 4, 15],
                         borderColor: '#FFE854',
                         backgroundColor: ['#FFE854', '#FFE854', '#FFE854', '#FFE854', '#FFE854'],
                     },
                     {
+                        label: 'Bar',
                         type: 'bar',
                         data: [22, 20, 21, 14, 20, 5, 15],
                         backgroundColor: ['#37B04C', '#37B04C', '#37B04C', '#37B04C', '#37B04C'],
