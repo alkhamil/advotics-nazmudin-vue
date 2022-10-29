@@ -2,7 +2,7 @@
     <div class="dashboard">
         <div class="title">
             <h4>Dashboard</h4>
-            <CustomDatepicker @onChangeDate="changeDate" />
+            <CustomDatepicker class="datepicker" @onChangeDate="changeDate" />
         </div>
 
         <div class="insight">
@@ -252,6 +252,12 @@ $mobile: 900px;
             font-size: 30px;
             font-weight: 600;
             color: #707070C4;
+        }
+
+        @media only screen and (max-width: $mobile) {
+            .datepicker {
+                width: 100%;
+            }
         }
     }
 

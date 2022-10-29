@@ -35,11 +35,11 @@ export default {
         })
 
         const handleDate = (modelData) => {
-          date.value = modelData;
-          context.emit("onChangeDate", {
-            startDate: moment(date.value[0]).format('YYYY-MM-DD'),
-            endDate: moment(date.value[1]).format('YYYY-MM-DD'),
-          });
+            date.value = modelData;
+            context.emit("onChangeDate", {
+                startDate: moment(date.value[0]).format('YYYY-MM-DD'),
+                endDate: moment(date.value[1]).format('YYYY-MM-DD'),
+            });
         }
 
         const presetRanges = ref([
@@ -75,6 +75,8 @@ export default {
 }
 </script>
 <style lang="scss">
+$mobile: 900px;
+
 .filter-date {
     height: 40px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -100,6 +102,12 @@ export default {
         span {
             font-size: 14px;
             color: #8B8B8B;
+        }
+
+        @media only screen and (max-width: $mobile) {
+            span {
+                display: none;
+            }
         }
     }
 
@@ -140,7 +148,6 @@ export default {
     .dp__preset_ranges {
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
 
         .dp__preset_range {
             border-bottom: 1px solid #ccc;
@@ -163,5 +170,11 @@ export default {
 .dp__range_between {
     background: #D6EDDA;
     color: #31A445;
+}
+
+@media only screen and (max-width: $mobile) {
+    .dp__flex_display {
+        flex-direction: column;
+    }
 }
 </style>
