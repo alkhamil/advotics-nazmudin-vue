@@ -4,7 +4,7 @@
         <img src="@/assets/images/calendar.png" alt="advotics">
             <span>Periode</span>
         </div>
-        <Datepicker class="datepicker" hideInputIcon @update:modelValue="handleDate" :maxDate="maxDate" v-model="date" :previewFormat="'dd MMMM yyyy'" :format="'dd MMMM yyyy'" :clearable="false" selectText="Apply" range multiCalendars :presetRanges="presetRanges" :enableTimePicker="false" />
+        <Datepicker class="datepicker" @internalModelChange="handleInternal" hideInputIcon @update:modelValue="handleDate" :maxDate="maxDate" v-model="date" :previewFormat="'dd MMMM yyyy'" :format="'dd MMMM yyyy'" :clearable="false" selectText="Apply" range multiCalendars :presetRanges="presetRanges" :enableTimePicker="false" />
         <img src="@/assets/images/ic-chevron-down-alt.svg" class="chevron-down" alt="advotics">
     </div>
 </template>
@@ -44,10 +44,6 @@ export default {
 
         const presetRanges = ref([
             {
-                label: 'Today',
-                range: [moment(), moment()]
-            },
-            {
                 label: 'Yesterday',
                 range: [moment().subtract(1, 'days'), moment().subtract(1, 'days')]
             },
@@ -65,11 +61,26 @@ export default {
             },
         ]);
 
+        const handleInternal = (dt) => {
+            const startDate = moment(dt[0]);
+            const endDate = moment(dt[1]);
+            const rangeCount = endDate.diff(startDate, 'days');
+            const buttonApply = document.querySelector('.dp__select');
+            if (buttonApply) {
+                if (rangeCount < 2) {
+                    buttonApply.classList.add('dp__disabled');
+                } else {
+                    buttonApply.classList.remove('dp__disabled');
+                }
+            }
+        }
+
         return {
             date,
             presetRanges,
             maxDate,
-            handleDate
+            handleDate,
+            handleInternal
         }
     }
 }
@@ -172,17 +183,32 @@ $mobile: 900px;
     color: #31A445;
 }
 
-@media only screen and (max-width: $mobile) {
-    .dp__menu {
-        right: 0 !important;
-        left: unset !important;
-    }
-
-    .dp__menu_content_wrapper {
-        grid-template-columns: 1fr;
-    }
-    .dp__flex_display {
-        flex-direction: column;
-    }
+.dp__action_buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
+
+.dp__action {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 10px;
+}
+
+.dp__action.dp__cancel {
+    background: #ccc;
+    color: #000;
+}
+
+.dp__action.dp__select {
+    background: #31A445;
+    color: #fff;
+}
+
+.dp__action.dp__disabled {
+    pointer-events: none;
+    opacity: .3;
+}
+
 </style>
